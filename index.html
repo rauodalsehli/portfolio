@@ -74,20 +74,17 @@
     </section>
 
     <!-- 2nd Page: Cozy Gamer Girl Room -->
-    <section id="gamer-girl-section" class="scroll-section"
-      style="padding: 0; margin: 0; width: 100%; height: 100vh; overflow: hidden; position: relative; z-index: 5; display: flex; background-color: #000;">
+    <section id="gamer-girl-section" class="scroll-section">
 
       <!-- Left side: Book Content -->
-      <div
-        style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+      <div class="book-container-wrapper">
         <!-- Background Stars -->
         <div class="stars-container"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
         </div>
 
         <!-- Book & Side Videos Wrapper -->
-        <div
-          style="display: flex; align-items: flex-end; justify-content: center; position: relative; z-index: 5; margin-bottom: 20px;">
+        <div class="book-video-flex">
           <video src="assets/purpleflowR.mp4" autoplay loop muted playsinline
             style="width: 100px; height: auto; border-radius: 8px; margin-right: -40px; z-index: 4;"></video>
 
@@ -399,8 +396,7 @@
     </section>
 
     <!-- Adventures Section -->
-    <section id="adventures-section" class="scroll-section"
-      style="padding: 100px 0; margin: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #000; position: relative; overflow: hidden;">
+    <section id="adventures-section" class="scroll-section">
 
       <!-- Background Stars -->
       <div class="stars-container"
@@ -411,10 +407,8 @@
         <p class="inventory-subtitle" style="margin-bottom: 60px; opacity: 0.8; min-height: 1.5em;"><span
             id="typed-subheader"></span></p>
 
-        <div class="adventure-content fade-in-on-scroll"
-          style="background: rgba(255,255,255,0.03); border: 1px solid rgba(202, 164, 103, 0.2); border-radius: 20px; padding: 60px 40px; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-          <ul class="achievements-list"
-            style="list-style: none; padding: 0; margin: 0; font-family: var(--font-body); font-size: 1.8rem; line-height: 1.6; color: #fff; text-align: left;">
+        <div class="adventure-content fade-in-on-scroll">
+          <ul class="achievements-list">
             <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
                 style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> 2nd place in Ministry
               of Environment, Water & Agriculture hackathon</li>
@@ -504,7 +498,7 @@
     <footer id="main-footer"
       style="background: #000; padding: 100px 0 40px 0; position: relative; z-index: 10; border-top: 1px solid rgba(202, 164, 103, 0.1);">
       <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; text-align: center;">
-        <h2 class="flowing-header" style="margin-bottom: 20px;">Redy For The Next Adventure?</h2>
+        <h2 class="flowing-header footer-heading" style="margin-bottom: 20px;">Ready For The Next Adventure?</h2>
         <p class="inventory-subtitle" style="margin-bottom: 40px; opacity: 0.8;">Let's collaborate on your next magical
           project.</p>
 

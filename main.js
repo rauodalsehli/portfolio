@@ -365,13 +365,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bookElement) {
     // Initialize the realistic page flip
     const pageFlip = new St.PageFlip(bookElement, {
-      width: 360,  // Half of 684px container (matches cover image width)
-      height: 505, // 342 × (1014/684) = proportional to cover image
-      size: "fixed",
+      width: 360,  // Base page width
+      height: 505, // Base page height
+      size: "stretch", // Allow scaling for smaller viewports
+      minWidth: 280,
+      maxWidth: 360,
+      minHeight: 392,
+      maxHeight: 505,
       showCover: true,
-      mobileScrollSupport: false,
-      useMouseEvents: false, // Disable click/drag on pages — only arrows control flipping
+      mobileScrollSupport: true,
+      useMouseEvents: false,
       clickEventForward: false
+    });
+
+    // Refresh ScrollTrigger on resize to fix layout shifts
+    window.addEventListener('resize', () => {
+      ScrollTrigger.refresh();
     });
 
     // Load pages from DOM

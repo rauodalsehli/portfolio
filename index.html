@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raud's World</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Caveat:wght@400;700&display=swap"
+    rel="stylesheet">
+  <!-- Three.js for 3D Elements -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP for Scroll Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- PageFlip library for realistic book curling -->
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+  <!-- Typed.js for typewriter effect -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+
+<body>
+  <!-- Audio Background -->
+  <audio id="bgm" src="bgm.mp3" loop></audio>
+
+  <!-- Adventure Time Fixed Background -->
+  <div class="scene-background">
+    <div class="sky-gradient"></div>
+    <div class="drifting-stars"></div>
+
+    <!-- Giant Moon -->
+    <div class="giant-moon">
+      <div class="crater c1"></div>
+      <div class="crater c2"></div>
+      <div class="crater c3"></div>
+    </div>
+
+    <!-- Chunky Clouds -->
+    <div class="clouds-container">
+      <div class="chunky-cloud cloud-1"></div>
+      <div class="chunky-cloud cloud-2"></div>
+      <div class="chunky-cloud cloud-3"></div>
+    </div>
+  </div>
+
+  <!-- Modular Cat Companion Base (Hidden by default for now while we style the rest) -->
+  <div id="cat" class="fixed-cat hidden pose-sit" data-x="0"></div>
+
+  <!-- Main Scrolling Container -->
+  <main class="scroll-container">
+
+    <!-- 1st Page: 3D Gate Cover + Welcome Page -->
+    <section id="welcome-section" class="scroll-section flex-center"
+      style="background-color: #000; position: relative; overflow: hidden; height: 100vh; width: 100%; padding: 0;">
+      <!-- The Gate Container Overlay -->
+      <div id="webgl-door-container"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; pointer-events: none;">
+      </div>
+
+      <!-- Sparse Scattered Fast Stars -->
+      <div id="sparse-stars-container" class="stars-container"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none;"></div>
+
+      <!-- Welcome Text behind the gate -->
+      <h2 class="bloodborne-text" id="welcome-text">
+        Welcome To Raud's Journy
+      </h2>
+
+      <div class="scroll-hint bloodborne-text"
+        style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 101; cursor: pointer;">
+        Scroll to Enter ↓
+      </div>
+    </section>
+
+    <!-- 2nd Page: Cozy Gamer Girl Room -->
+    <section id="gamer-girl-section" class="scroll-section"
+      style="padding: 0; margin: 0; width: 100%; height: 100vh; overflow: hidden; position: relative; z-index: 5; display: flex; background-color: #000;">
+
+      <!-- Left side: Book Content -->
+      <div
+        style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+        <!-- Background Stars -->
+        <div class="stars-container"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
+        </div>
+
+        <!-- Book & Side Videos Wrapper -->
+        <div
+          style="display: flex; align-items: flex-end; justify-content: center; position: relative; z-index: 5; margin-bottom: 20px;">
+          <video src="assets/purpleflowR.mp4" autoplay loop muted playsinline
+            style="width: 100px; height: auto; border-radius: 8px; margin-right: -40px; z-index: 4;"></video>
+
+          <!-- Interactive Book Structure (StPageFlip) & Controls -->
+          <div style="position: relative; display: flex; align-items: center;">
+            <button class="page-turn-btn" id="btn-page-left"
+              style="position: absolute; left: -60px; z-index: 20;">&#10094;</button>
+            <div id="interactive-book">
+              <!-- Cover (Hard) -->
+              <div class="book-page book-cover-page" data-density="hard">
+                <div class="page-content page-cover"
+                  style="background-image: url('assets/meeting_raud_book_nobg.png'); background-size: 100% 100%; width: 100%; height: 100%;">
+                </div>
+              </div>
+
+              <!-- Page 1 (Text 1) -->
+              <div class="book-page">
+                <div class="page-content page-text"
+                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
+                  <h2
+                    style="font-size: 25px; color: var(--accent-gold); text-align: center; width: 100%; margin-bottom: 30px;">
+                    Hi, I’m Raud Alsehli</h2>
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I tested systems for a living…
+                  </p>
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 5px 0 0 0;">but secretly, I build
+                    worlds.</p>
+                </div>
+              </div>
+              <!-- Page 2 (Text 2) -->
+              <div class="book-page">
+                <div class="page-content page-text"
+                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I’m a Computer Scientist who
+                    moves between logic and imagination</p>
+                </div>
+              </div>
+              <!-- Page 3 (Text 3) -->
+              <div class="book-page">
+                <div class="page-content page-text"
+                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">From Quality Assurance and
+                    automation to designing interactive ideas and game concepts.</p>
+                </div>
+              </div>
+              <!-- Page 4 (Text 4) -->
+              <div class="book-page">
+                <div class="page-content page-text"
+                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I’m inspired by anime, games,
+                    late-night playlists, and the stories that stay with you long after they end.</p>
+                </div>
+              </div>
+              <!-- Page 5 (Text 5) -->
+              <div class="book-page">
+                <div class="page-content page-text"
+                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">Music fuels my focus.<br>Anime
+                    fuels my imagination.<br>Games fuel my drive to create.</p>
+                </div>
+              </div>
+              <!-- Page 6 (Text 6) -->
+              <div class="book-page">
+                <div class="page-content page-text"
+                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
+                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I don’t just want things to
+                    work.<br>I want them to feel something.<br><br>That’s the world I’m building.</p>
+                </div>
+              </div>
+              <!-- Inside Back Cover (Hard) -->
+              <div class="book-page" data-density="hard">
+                <div class="page-content page-white" style="background-color: #fff; width: 100%; height: 100%;">
+                </div>
+              </div>
+              <!-- Back Cover (Hard) -->
+              <div class="book-page book-cover-page" data-density="hard">
+                <div class="page-content page-cover"
+                  style="background-image: url('assets/meeting_raud_book_nobg.png'); background-size: 100% 100%; width: 100%; height: 100%;">
+                </div>
+              </div>
+            </div>
+            <button class="page-turn-btn" id="btn-page-right"
+              style="position: absolute; right: -60px; z-index: 20;">&#10095;</button>
+          </div>
+
+          <video src="assets/purpleflowL.mp4" autoplay loop muted playsinline
+            style="width: 100px; height: auto; border-radius: 8px; margin-left: -40px; z-index: 4;"></video>
+        </div>
+      </div>
+
+      <!-- Right side: Video -->
+      <div
+        style="flex: 1; display: flex; justify-content: center; align-items: center; border-left: 2px solid var(--accent-gold); padding: 40px;">
+        <video src="assets/animated_room.mp4" autoplay loop muted playsinline
+          style="width: 100%; max-width: 600px; height: auto; border: 2px solid var(--accent-gold); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"></video>
+      </div>
+    </section>
+
+    <!-- Hero / Cover Section: Stacked Sticky Cards -->
+    <section id="hero" class="stacked-cards-section flex-row">
+      <!-- Background Stars -->
+      <div class="stars-container"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
+      </div>
+
+      <!-- Left Side Title Text -->
+      <div class="cards-title-container">
+        <h2 class="bloodborne-text" id="path-text">
+          The<br>Path<br>So<br>Far
+        </h2>
+      </div>
+
+      <!-- Right Side Cards -->
+      <div class="cards-wrapper">
+        <!-- Card 1 -->
+        <div class="stacked-card" id="card-1">
+          <div class="card-inner" style="color: #000;">
+            <div class="card-header" style="background: #F3E3D0;">
+              <span class="card-year" style="color: #000;">2025</span>
+              <span class="card-category" style="color: #000;">Mirai, a scopely company</span>
+            </div>
+            <div class="card-main" style="background: #F3E3D0;">
+              <h2 class="card-title" style="color: #000;">Jr. Quality Assurance</h2>
+            </div>
+            <div class="card-image-wrapper" style="background: #FEEBF6; padding: 20px; overflow-y: auto; flex-grow: 1;">
+              <p style="color: #000; font-size: 0.85rem; line-height: 1.6; margin: 0; white-space: pre-line;">
+                •Conducted functional, usability, and regression testing on various mobile games.
+                • Reported, tracked, and validated bugs using structured QA workflows.
+                • Documented test cases and results using TestRail.
+                • Provided feedback on game mechanics, performance, and user experience.
+                • Worked with cross-functional teams to ensure fixes were correctly implemented.
+                • Participated in brainstorming sessions for gameplay and feature improvements.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="stacked-card" id="card-2">
+          <div class="card-inner" style="color: #000;">
+            <div class="card-header" style="background: #F3E3D0;">
+              <span class="card-year" style="color: #000;">2024</span>
+              <span class="card-category" style="color: #000;">UiPath &amp; SDA</span>
+            </div>
+            <div class="card-main" style="background: #F3E3D0;">
+              <h2 class="card-title" style="color: #000; font-size: 1.4rem;">RPA - Robotic Process Automation</h2>
+            </div>
+            <div class="card-image-wrapper" style="background: #AACDDC; padding: 20px; overflow-y: auto; flex-grow: 1;">
+              <p style="color: #000; font-size: 0.8rem; line-height: 1.6; margin: 0; white-space: pre-line;">
+                <strong>Automation Developer:</strong>
+                • Develop automation projects and components according to the solution design, using the dedicated
+                automation software.
+                • Adhere to the automation development methodologies and RPA best practices.
+                • Do software testing for the automation workflows and work with the Tester.
+                • Create the technical documentation for the automations developed, according to the best practices.
+                • Review code written by peers and facilitate knowledge transfer.
+
+                <strong>Business Analyst:</strong>
+                • Engage with stakeholders and conduct high-level assessments to identify business processes with
+                automation potential.
+                • Perform in-depth process analysis for the processes selected for automation and create the relevant
+                documents, such as the Process Definition Document.
+                • Define the business requirements and the test case scenarios for the future state, automated business
+                processes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="stacked-card" id="card-3">
+          <div class="card-inner" style="color: #000;">
+            <div class="card-header" style="background: #FFCDB2;">
+              <span class="card-year" style="color: #000;">2023</span>
+              <span class="card-category" style="color: #000;">King Fahad Hospital</span>
+            </div>
+            <div class="card-main" style="background: #FFCDB2;">
+              <h2 class="card-title" style="color: #000;">IT Department</h2>
+            </div>
+            <div class="card-image-wrapper" style="background: #D6C0B3; padding: 20px; overflow-y: auto; flex-grow: 1;">
+              <p style="color: #000; font-size: 0.85rem; line-height: 1.6; margin: 0; white-space: pre-line;">
+                • Provided technical support to hospital staff for computers,
+                printers, and network connectivity issues.
+
+                • Assisted in installing, configuring, and maintaining computer systems and software used in hospital
+                departments.
+
+                • Assisted in user account setup and access management for hospital systems.
+
+                • Documented technical issues and solutions to improve IT support processes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="scroll-section">
+      <div class="split-layout">
+        <!-- Left Side: Illustration -->
+        <div class="split-left flex-center">
+          <video src="assets/reacord.mp4" autoplay loop muted playsinline
+            style="width: 100%; max-width: 450px; height: auto; display: block;"></video>
+        </div>
+
+        <!-- Right Side: Game Gallery -->
+        <div class="split-right">
+          <div class="gallery-grid">
+            <div class="gallery-item" data-title="Swept Away" data-type="video" data-video="projects/swept.MOV"
+              data-link1="https://swept-away-presskit.vercel.app/" data-link1-label="Press Kit"
+              data-link2="https://github.com/rauodalsehli/SweptAway" data-link2-label="GitHub">
+              <img src="assets/game3.png" alt="Game 3">
+              <div class="gallery-overlay"><span>View Details</span></div>
+            </div>
+            <div class="gallery-item" data-title="SuperMan: Save the Lives" data-type="text" data-heading="Game Brief"
+              data-paragraph="SuperMan: Save the Lives is a simple superhero mobile game where the player controls SuperMan as he flies through the sky collecting hearts. Each heart represents a life that must be saved. The main goal is to collect all the hearts before the timer ends."
+              data-link1="https://github.com/rauodalsehli/Superman" data-link1-label="GitHub">
+              <img src="assets/game1.png" alt="Game 1">
+              <div class="gallery-overlay"><span>View Details</span></div>
+            </div>
+            <div class="gallery-item" data-title="Coralcap" data-type="video"
+              data-video="projects/Coralcap Presentation.mp4">
+              <img src="assets/game2.png" alt="Game 2">
+              <div class="gallery-overlay"><span>View Details</span></div>
+            </div>
+            <div class="gallery-item" data-title="Cat Game" data-type="video" data-video="projects/cat.MOV"
+              data-caption="The 1st project on Unreal Engine to try the mechanics, audio, UI and animation …..etc">
+              <img src="assets/game.png" alt="Game">
+              <div class="gallery-overlay"><span>View Details</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Details Modal -->
+    <div id="game-modal" class="modal-overlay">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <video id="modal-video" controls
+          style="display:none; width:100%; border-radius:8px; margin-bottom:16px;"></video>
+        <h2 id="modal-title"></h2>
+        <h3 id="modal-heading" style="display:none; color:var(--accent-gold); margin-top:12px; font-size:1.3rem;"></h3>
+        <p id="modal-desc" style="display:none;"></p>
+        <p id="modal-caption" style="display:none; font-style:italic; color:#ccc; margin-top:10px;"></p>
+        <div id="modal-links" style="margin-top:16px; display:flex; flex-direction:column; gap:10px;"></div>
+      </div>
+    </div>
+
+    <!-- Inventory Intro Section -->
+    <section id="inventory-intro" class="scroll-section flex-column inventory-intro-bg"
+      style="min-height: 100vh; justify-content: flex-start; padding-top: 5vh; position: relative; overflow: hidden;">
+      <!-- Background Stars -->
+      <div class="stars-container"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></div>
+      <div style="position: relative; z-index: 10; text-align: center; width: 100%;">
+        <h2 class="flowing-header">Inventory</h2>
+        <p class="inventory-subtitle">Tools and artifacts collected along the journey</p>
+      </div>
+
+      <!-- Skills Split Layout -->
+      <div class="inventory-skills-container" style="position: relative; z-index: 10;">
+        <!-- Left: Soft Skills -->
+        <div class="skills-column">
+          <video class="skills-bg-video" autoplay loop muted playsinline>
+            <source src="assets/naruto2.mp4" type="video/mp4">
+          </video>
+          <div class="skills-bg-mask"></div>
+
+          <div class="skills-content">
+            <h3 class="skills-heading">Soft Skills</h3>
+            <ul class="skills-list">
+              <li>Communication</li>
+              <li>Problem Solving</li>
+              <li>Flexibility</li>
+              <li>Critical Thinking</li>
+              <li>Team Collaboration</li>
+              <li>Analytical Thinking</li>
+              <li>Self-Motivation & Initiative</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Technical Skills -->
+        <div class="skills-column">
+          <img src="assets/Stenis.png" alt="Stenis Background" class="skills-bg-image">
+          <div class="skills-bg-mask"></div>
+
+          <div class="skills-content">
+            <h3 class="skills-heading">Technical Skills</h3>
+            <ul class="skills-list">
+              <li>Software Testing & QA</li>
+              <li>HTML/CSS/Javascript</li>
+              <li>Unreal / Unity engine</li>
+              <li>Game Testing</li>
+              <li>Game Developer / Designer</li>
+              <li>Test Case & Execution</li>
+              <li>Bug Tracking & Reporting</li>
+              <li>TestRail</li>
+              <li>UiPath Apps & Automation Hub</li>
+              <li>Workflow & Process Optimization</li>
+              <li>C# / C++</li>
+              <li>Java</li>
+              <li>Jira</li>
+              <li>SQL Basics</li>
+              <li>UI/ UX</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Adventures Section -->
+    <section id="adventures-section" class="scroll-section"
+      style="padding: 100px 0; margin: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #000; position: relative; overflow: hidden;">
+
+      <!-- Background Stars -->
+      <div class="stars-container"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></div>
+
+      <div style="position: relative; z-index: 10; text-align: center; width: 100%; max-width: 900px; padding: 0 20px;">
+        <h2 class="flowing-header" style="margin-bottom: 15px; min-height: 1.2em;"><span id="typed-header"></span></h2>
+        <p class="inventory-subtitle" style="margin-bottom: 60px; opacity: 0.8; min-height: 1.5em;"><span
+            id="typed-subheader"></span></p>
+
+        <div class="adventure-content fade-in-on-scroll"
+          style="background: rgba(255,255,255,0.03); border: 1px solid rgba(202, 164, 103, 0.2); border-radius: 20px; padding: 60px 40px; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+          <ul class="achievements-list"
+            style="list-style: none; padding: 0; margin: 0; font-family: var(--font-body); font-size: 1.8rem; line-height: 1.6; color: #fff; text-align: left;">
+            <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> 2nd place in Ministry
+              of Environment, Water & Agriculture hackathon</li>
+            <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span>
+              Researches:
+              1.Detecting and Analyzing Facial and Eye Features of Drugs Abuser Using AI
+
+              <div> 2.Enhancing Pedestrian Pose Detection using Deep Learning Techniques</div>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Unity gameteams for
+              game development - Taibah Vally with CG Spectrum</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Game Design
+              Fundamentals - MCIT & MISK</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Participant as an
+              Organizer (Leader) in Intentional Book Fair - Ministry of Culture</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Problem Solving
+              Competition - Microsoft Club</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Cyber Security and
+              Data Privacy - Ataa Digital</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Speaking and
+              Presenting Skills - The Literary and Cultural Club</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Agentic Automation
+              Associate</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Certificate of
+              Appreciation - Dean of the Faculty of Computer Science and Engineering</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Machine Learning for
+              All - Google</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Securing Access to
+              Web and Cloud Applications - Oracle</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Game Design
+              Fundamentals From MCIT & MISK</li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Car Rental System
+            </li>
+            <li style="display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Pizza Delivery System
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transitional Half Page -->
+    <section id="transition-half"
+      style="position: relative; width: 100%; height: 50vh; background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%); margin-bottom: -50vh; z-index: 10; pointer-events: none; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 5vh;">
+      <h2 class="flowing-header" style="opacity: 0.3; font-size: 3rem; letter-spacing: 10px; margin-bottom: 10px;">The
+        Final Shrine</h2>
+      <p class="inventory-subtitle" style="opacity: 0.2; letter-spacing: 4px; font-size: 1rem;">Rest here, Traveler</p>
+    </section>
+
+
+    <!-- Shrine Video Section -->
+    <section id="shrine-section" class="scroll-section"
+      style="position: relative; width: 100%; height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+      <video src="assets/shrine.mp4" autoplay loop muted playsinline
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.3;"></video>
+      <div
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1;">
+      </div>
+
+      <div class="stars-container"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
+
+      <div style="position: relative; z-index: 10; text-align: center; color: #dedede; padding: 0 20px;">
+        <h2 class="flowing-header"
+          style="font-size: 1.5rem; margin: 0 auto; max-width: 800px; line-height: 1.4; letter-spacing: 2px; margin-bottom: 10px;">
+          You've
+          journeyed far...</h2>
+        <p class="flowing-header"
+          style="font-size: 1.5rem; margin: 0 auto; max-width: 800px; line-height: 1.4; letter-spacing: 2px;">Thank you
+          for exploring Raud's World</p>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="main-footer"
+      style="background: #000; padding: 100px 0 40px 0; position: relative; z-index: 10; border-top: 1px solid rgba(202, 164, 103, 0.1);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; text-align: center;">
+        <h2 class="flowing-header" style="margin-bottom: 20px;">Redy For The Next Adventure?</h2>
+        <p class="inventory-subtitle" style="margin-bottom: 40px; opacity: 0.8;">Let's collaborate on your next magical
+          project.</p>
+
+        <div class="footer-links"
+          style="display: flex; justify-content: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap;">
+          <a href="mailto:Raudalsehli@gmail.com" class="footer-link">
+            <span class="link-label">Email</span>
+          </a>
+          <a href="https://github.com/rauodalsehli" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <span class="link-label">GitHub</span>
+          </a>
+          <a href="http://linkedin.com/in/raud-alsehli-016903179" target="_blank" rel="noopener noreferrer"
+            class="footer-link">
+            <span class="link-label">LinkedIn</span>
+          </a>
+          <a href="https://x.com/RaudExtraO" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <span class="link-label">X</span>
+          </a>
+          <a href="assets/Raud_CV.pdf" download class="footer-link">
+            <span class="link-label">Download CV</span>
+          </a>
+        </div>
+
+        <div
+          style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; color: rgba(255,255,255,0.3); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">
+          &copy; 2026 Raud's World. All Magic Reserved.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

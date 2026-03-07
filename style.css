@@ -1250,52 +1250,131 @@ h4,
   }
 }
 
-/* Page Specific: About */
+/* Page Specific: About - The Interactive Book Section */
 #about {
   /* No default paper-texture on the outer section, we let the inner open-book handle it */
   background: transparent;
   border-bottom: none;
 }
 
-.open-book-layout {
-  display: flex;
-  width: 100%;
-  max-width: 1100px;
-  min-height: 600px;
-  background: var(--bg-cream);
-  /* Book drop shadow */
-  box-shadow:
-    0 20px 40px rgba(10, 17, 40, 0.4),
-    0 0 10px rgba(10, 17, 40, 0.2);
-  border-radius: 8px;
+/* --- StPageFlip Book Styling --- */
+#interactive-book {
   position: relative;
-  overflow: hidden;
-}
-
-/* The book spine illusion */
-.open-book-layout::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 40px;
-  height: 100%;
-  transform: translateX(-50%);
-  background: linear-gradient(to right,
-      transparent 0%,
-      rgba(10, 17, 40, 0.05) 30%,
-      rgba(10, 17, 40, 0.15) 50%,
-      rgba(10, 17, 40, 0.05) 70%,
-      transparent 100%);
-  pointer-events: none;
   z-index: 5;
+  width: 900px;
+  /* Enlarged from 720px */
+  height: 630px;
+  /* Enlarged from 505px */
+  margin: 0 auto;
 }
 
 .book-page {
-  flex: 1;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
+}
+
+.book-page:not(.book-cover-page) .page-content {
+  background-color: #fff !important;
+  /* Ensure white background for inner pages */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 60px;
-  position: relative;
   box-sizing: border-box;
+}
+
+.book-cover-page {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.book-cover-page .page-cover {
+  /* Enlarge the cover visually to overhang the inner pages and specifically scale up to the right side */
+  width: 105% !important;
+  height: 104% !important;
+  margin-left: 0 !important;
+  margin-top: -2% !important;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Remove StPageFlip default wrapper shadow so transparent covers don't cast boxes */
+.stf__item {
+  box-shadow: none !important;
+}
+
+/* Inner Page Content Area */
+.page-content {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: var(--font-serif);
+  color: #333;
+}
+
+.page-cover {
+  padding: 0;
+}
+
+.page-white {
+  background-color: #b2d9f9;
+}
+
+.page-text h2 {
+  color: var(--accent-gold);
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.page-text p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Book Pagination Controls - Themed Arrows */
+.book-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.page-turn-btn {
+  background: rgba(202, 164, 103, 0.1) !important;
+  border: 1px solid var(--accent-gold) !important;
+  color: var(--accent-gold) !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-size: 1.2rem !important;
+  box-shadow: 0 0 10px rgba(202, 164, 103, 0.2) !important;
+}
+
+.page-turn-btn:hover {
+  background: var(--accent-gold) !important;
+  color: #000 !important;
+  box-shadow: 0 0 20px rgba(202, 164, 103, 0.4) !important;
+  transform: scale(1.1);
 }
 
 /* Left Page - Illustration/Polaroid */
@@ -1771,360 +1850,6 @@ h4,
   border-color: var(--accent-gold);
 }
 
-/* --- RESPONSIVE DESIGN (Media Queries) --- */
-
-/* Tablets and smaller screens */
-@media (max-width: 900px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-
-  .hero-avatar-ring {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 25px;
-  }
-
-  /* Open Book Layout becomes stacked */
-  .open-book-layout {
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: 100vh;
-  }
-
-  .open-book-layout::after {
-    display: none;
-    /* Hide spine on stacked view */
-  }
-
-  .book-page {
-    padding: 40px 20px !important;
-    width: 100% !important;
-  }
-
-  .book-left {
-    background: transparent;
-    /* Remove page curve gradient */
-    border-bottom: 1px dashed rgba(10, 17, 40, 0.2);
-  }
-
-  .inventory-skills-container {
-    flex-direction: column !important;
-    gap: 30px !important;
-    padding: 0 20px !important;
-  }
-
-  .skills-column {
-    width: 100% !important;
-  }
-
-  .chapter-title,
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .quest-title {
-    font-size: 1.5rem;
-  }
-
-  .split-layout {
-    flex-direction: column !important;
-    gap: 40px !important;
-  }
-
-  .split-left,
-  .split-right {
-    width: 100% !important;
-  }
-}
-
-/* Mobile Screens */
-@media (max-width: 600px) {
-  .scroll-section {
-    padding: 60px 15px !important;
-  }
-
-  .bloodborne-text {
-    font-size: 2rem !important;
-    text-align: center;
-    padding: 0 20px;
-  }
-
-  /* 3D Gate / Welcome Section */
-  #welcome-text {
-    width: 90%;
-  }
-
-  /* Cozy Gamer Room & Book */
-  #gamer-girl-section {
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: 100vh;
-    padding-top: 40px;
-    overflow-y: visible !important;
-  }
-
-  /* Specifically target the book for small screens */
-  #interactive-book {
-    width: 100% !important;
-    max-width: 360px !important;
-    height: 505px !important;
-    transform: scale(0.8);
-    margin-bottom: -40px;
-  }
-
-  .page-turn-btn {
-    font-size: 1.8rem;
-  }
-
-  #btn-page-left {
-    left: -40px !important;
-  }
-
-  #btn-page-right {
-    right: -40px !important;
-  }
-
-  /* Stacked Cards Section */
-  .stacked-cards-container {
-    width: 95% !important;
-    margin-top: 50px !important;
-  }
-
-  .card-item {
-    padding: 30px 20px !important;
-    width: 100% !important;
-  }
-
-  .card-item h3 {
-    font-size: 1.8rem !important;
-  }
-
-  /* Gallery Section */
-  .gallery-card {
-    width: 260px !important;
-    height: 400px !important;
-  }
-
-  .gallery-row {
-    gap: 15px !important;
-  }
-
-  /* Final Shrine */
-  .final-shrine-content h1 {
-    font-size: 2.5rem !important;
-  }
-
-  .hero-frame {
-    padding: 20px;
-    border-width: 1px;
-  }
-
-  .hero-frame::before,
-  .hero-frame::after {
-    width: 15px;
-    height: 15px;
-    border-width: 1px;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-
-  .btn-outline-gold {
-    padding: 12px 25px;
-    font-size: 0.8rem;
-  }
-
-  .inventory-grid,
-  .quests-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  #contact .handwritten {
-    font-size: 2.5rem;
-  }
-
-  .contact-links {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .btn-link {
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-/* Close @media (max-width: 600px) */
-
-/* --- ADVENTURES SECTION STYLING --- */
-.adventure-content {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(202, 164, 103, 0.2);
-  border-radius: 20px;
-  padding: 60px 40px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  margin: 0 auto;
-  max-width: 900px;
-}
-
-.achievements-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 1.8rem;
-  line-height: 1.6;
-  color: #ffffff !important;
-  /* Forced white */
-  text-align: left;
-}
-
-/* --- FOOTER HEADING FIX --- */
-.footer-heading {
-  margin-bottom: 20px;
-}
-
-/* Final Tablet/Mobile refinement for Adventures */
-@media (max-width: 768px) {
-  .adventure-content {
-    padding: 40px 20px !important;
-  }
-
-  .achievements-list {
-    font-size: 1.2rem !important;
-  }
-}
-
-/* --- StPageFlip Book Styling --- */
-#interactive-book {
-  position: relative;
-  z-index: 5;
-  width: 900px;
-  /* Enlarged from 720px */
-  height: 630px;
-  /* Enlarged from 505px */
-  margin: 0 auto;
-}
-
-.book-page {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-  border-radius: 0 !important;
-}
-
-.book-page:not(.book-cover-page) .page-content {
-  background-color: #fff !important;
-  /* Ensure white background for inner pages */
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.2) !important;
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 60px;
-  box-sizing: border-box;
-}
-
-.book-cover-page {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-.book-cover-page .page-cover {
-  /* Enlarge the cover visually to overhang the inner pages and specifically scale up to the right side */
-  width: 105% !important;
-  height: 104% !important;
-  margin-left: 0 !important;
-  margin-top: -2% !important;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
-}
-
-/* Remove StPageFlip default wrapper shadow so transparent covers don't cast boxes */
-.stf__item {
-  box-shadow: none !important;
-}
-
-/* Inner Page Content Area */
-.page-content {
-  width: 100%;
-  height: 100%;
-  padding: 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: var(--font-serif);
-  color: #333;
-}
-
-.page-cover {
-  padding: 0;
-}
-
-.page-white {
-  background-color: #b2d9f9;
-}
-
-.page-text h2 {
-  color: var(--accent-gold);
-  margin-bottom: 20px;
-  font-size: 2rem;
-}
-
-.page-text p {
-  line-height: 1.6;
-  font-size: 1.1rem;
-}
-
-/* Book Pagination Controls - Themed Arrows */
-.book-navigation {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
-  position: relative;
-  z-index: 10;
-}
-
-.page-turn-btn {
-  background: rgba(202, 164, 103, 0.1);
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-}
-
-.page-turn-btn:hover {
-  background: var(--accent-gold);
-  color: #000;
-  transform: scale(1.15) translateY(-5px);
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-}
-
 /* Scale down the image beside the book slightly */
 .gamer-girl-content {
   max-width: 450px !important;
@@ -2270,10 +1995,47 @@ h4,
   transform: translateY(0);
 }
 
+/* --- ADVENTURES SECTION STYLING --- */
+.adventure-content {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(202, 164, 103, 0.2);
+  border-radius: 20px;
+  padding: 60px 40px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: #ffffff !important;
+  /* Forced white */
+  text-align: left;
+}
+
+/* --- FOOTER HEADING FIX --- */
+.footer-heading {
+  margin-bottom: 20px;
+}
+
 /* --- FOOTER STYLING --- */
 #main-footer {
   background: #000;
   color: #fff;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
 }
 
 .footer-link {
@@ -2309,10 +2071,281 @@ h4,
   transform-origin: left;
 }
 
-@media (max-width: 768px) {
-  .footer-links {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+/* --- RESPONSIVE DESIGN (Media Queries) --- */
+
+/* Tablets and smaller screens */
+@media (max-width: 900px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-avatar-ring {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 25px;
+  }
+
+  #interactive-book {
+    width: 600px;
+    height: 420px;
+  }
+
+  .book-page {
+    padding: 40px 20px !important;
+    width: 100% !important;
+  }
+
+  .book-left {
+    background: transparent;
+    /* Remove page curve gradient */
+    border-bottom: 1px dashed rgba(10, 17, 40, 0.2);
+  }
+
+  .inventory-skills-container {
+    flex-direction: column !important;
+    gap: 30px !important;
+    padding: 0 20px !important;
+  }
+
+  .skills-column {
+    width: 100% !important;
+  }
+
+  .chapter-title,
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .quest-title {
+    font-size: 1.5rem;
+  }
+
+  .split-layout {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+
+  .split-left,
+  .split-right {
+    width: 100% !important;
   }
 }
+
+/* Mobile Screens */
+@media (max-width: 600px) {
+  .scroll-section {
+    padding: 60px 15px !important;
+  }
+
+  .bloodborne-text {
+    font-size: 2rem !important;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  /* 3D Gate / Welcome Section */
+  #welcome-text {
+    width: 90%;
+  }
+
+  /* Cozy Gamer Room & Book */
+  #gamer-girl-section {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 40px;
+    overflow-y: visible !important;
+  }
+
+  /* Specifically target the book for small screens */
+  #interactive-book {
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 450px !important;
+    transform: scale(0.9);
+  }
+
+  .page-turn-btn {
+    font-size: 1.8rem;
+  }
+
+  #btn-page-left {
+    left: -40px !important;
+  }
+
+  #btn-page-right {
+    right: -40px !important;
+  }
+
+  /* Stacked Cards Section */
+  .stacked-cards-container {
+    width: 95% !important;
+    margin-top: 50px !important;
+  }
+
+  .card-item {
+    padding: 30px 20px !important;
+    width: 100% !important;
+  }
+
+  .card-item h3 {
+    font-size: 1.8rem !important;
+  }
+
+  /* Gallery Section */
+  .gallery-card {
+    width: 260px !important;
+    height: 400px !important;
+  }
+
+  .gallery-row {
+    gap: 15px !important;
+  }
+
+  /* Final Shrine */
+  .final-shrine-content h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-frame {
+    padding: 20px;
+    border-width: 1px;
+  }
+
+  .hero-frame::before,
+  .hero-frame::after {
+    width: 15px;
+    height: 15px;
+    border-width: 1px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .btn-outline-gold {
+    padding: 12px 25px;
+    font-size: 0.8rem;
+  }
+
+  .inventory-grid,
+  .quests-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  #contact .handwritten {
+    font-size: 2.5rem;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .adventure-content {
+    padding: 30px 20px;
+  }
+
+  .achievements-list {
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 30px;
+      z-index: 10;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .gallery-card-content h4 {
+      font-family: var(--font-header, sans-serif);
+      font-size: 1.5rem;
+      margin: 0 0 5px 0;
+      letter-spacing: 1px;
+    }
+
+    .gallery-card-content span {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .gallery-card:hover {
+      transform: scale(1.05);
+      z-index: 20;
+    }
+
+    .gallery-card:hover .gallery-card-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- FOOTER STYLING --- */
+    #main-footer {
+      background: #000;
+      color: #fff;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent-gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .footer-link:hover {
+      opacity: 0.8;
+    }
+
+    .footer-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    @media (max-width: 768px) {
+      .footer-links {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+    }

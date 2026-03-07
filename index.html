@@ -85,13 +85,13 @@
 
         <!-- Book & Side Videos Wrapper -->
         <div class="book-video-flex">
-          <video src="assets/purpleflowR.mp4" autoplay loop muted playsinline
-            style="width: 100px; height: auto; border-radius: 8px; margin-right: -40px; z-index: 4;"></video>
+          <div class="gamer-girl-content" style="margin-right: -40px; z-index: 4;">
+            <video src="assets/purpleflowR.mp4" autoplay loop muted playsinline
+              style="width: 150px; height: auto; border-radius: 8px;"></video>
+          </div>
 
           <!-- Interactive Book Structure (StPageFlip) & Controls -->
-          <div style="position: relative; display: flex; align-items: center;">
-            <button class="page-turn-btn" id="btn-page-left"
-              style="position: absolute; left: -60px; z-index: 20;">&#10094;</button>
+          <div style="flex-direction: column; display: flex; align-items: center;">
             <div id="interactive-book">
               <!-- Cover (Hard) -->
               <div class="book-page book-cover-page" data-density="hard">
@@ -100,77 +100,39 @@
                 </div>
               </div>
 
-              <!-- Page 1 (Text 1) -->
+              <!-- Inner Pages (Dynamic) -->
               <div class="book-page">
-                <div class="page-content page-text"
-                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
-                  <h2
-                    style="font-size: 25px; color: var(--accent-gold); text-align: center; width: 100%; margin-bottom: 30px;">
-                    Hi, I’m Raud Alsehli</h2>
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I tested systems for a living…
-                  </p>
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 5px 0 0 0;">but secretly, I build
-                    worlds.</p>
+                <div class="page-content">
+                  <h2 class="bloodborne-text" style="color: #000; font-size: 2rem; margin-bottom: 20px;">Meeting Raud
+                  </h2>
+                  <p style="color: #333; font-size: 1.1rem; line-height: 1.6;">Hi, I'm Raud Alsehli. A passionate Game
+                    Designer and Software Tester. Welcome to my magical portfolio book.</p>
                 </div>
               </div>
-              <!-- Page 2 (Text 2) -->
+
               <div class="book-page">
-                <div class="page-content page-text"
-                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I’m a Computer Scientist who
-                    moves between logic and imagination</p>
+                <div class="page-content">
+                  <h2 class="bloodborne-text" style="color: #000; font-size: 2rem; margin-bottom: 20px;">The Journey
+                  </h2>
+                  <p style="color: #333; font-size: 1.1rem; line-height: 1.6;">Every project is a quest. Every line of
+                    code is a spell. Step into my world of pixels and passion.</p>
                 </div>
               </div>
-              <!-- Page 3 (Text 3) -->
-              <div class="book-page">
-                <div class="page-content page-text"
-                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">From Quality Assurance and
-                    automation to designing interactive ideas and game concepts.</p>
-                </div>
-              </div>
-              <!-- Page 4 (Text 4) -->
-              <div class="book-page">
-                <div class="page-content page-text"
-                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I’m inspired by anime, games,
-                    late-night playlists, and the stories that stay with you long after they end.</p>
-                </div>
-              </div>
-              <!-- Page 5 (Text 5) -->
-              <div class="book-page">
-                <div class="page-content page-text"
-                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">Music fuels my focus.<br>Anime
-                    fuels my imagination.<br>Games fuel my drive to create.</p>
-                </div>
-              </div>
-              <!-- Page 6 (Text 6) -->
-              <div class="book-page">
-                <div class="page-content page-text"
-                  style="text-align: left; align-items: flex-start; justify-content: flex-start; padding-top: 60px;">
-                  <p style="font-size: 20px; text-align: left; width: 100%; margin: 0;">I don’t just want things to
-                    work.<br>I want them to feel something.<br><br>That’s the world I’m building.</p>
-                </div>
-              </div>
-              <!-- Inside Back Cover (Hard) -->
-              <div class="book-page" data-density="hard">
-                <div class="page-content page-white" style="background-color: #fff; width: 100%; height: 100%;">
-                </div>
-              </div>
-              <!-- Back Cover (Hard) -->
-              <div class="book-page book-cover-page" data-density="hard">
-                <div class="page-content page-cover"
-                  style="background-image: url('assets/meeting_raud_book_nobg.png'); background-size: 100% 100%; width: 100%; height: 100%;">
-                </div>
-              </div>
+
+              <!-- More pages can be added here -->
             </div>
-            <button class="page-turn-btn" id="btn-page-right"
-              style="position: absolute; right: -60px; z-index: 20;">&#10095;</button>
+
+            <!-- Themed Navigation Wrapper -->
+            <div class="book-navigation">
+              <button class="page-turn-btn" id="btn-page-left">&#10094;</button>
+              <button class="page-turn-btn" id="btn-page-right">&#10095;</button>
+            </div>
           </div>
 
-          <video src="assets/purpleflowL.mp4" autoplay loop muted playsinline
-            style="width: 100px; height: auto; border-radius: 8px; margin-left: -40px; z-index: 4;"></video>
+          <div class="gamer-girl-content" style="margin-left: -40px; z-index: 4;">
+            <video src="assets/purpleflowL.mp4" autoplay loop muted playsinline
+              style="width: 150px; height: auto; border-radius: 8px;"></video>
+          </div>
         </div>
       </div>
 
@@ -403,9 +365,10 @@
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></div>
 
       <div style="position: relative; z-index: 10; text-align: center; width: 100%; max-width: 900px; padding: 0 20px;">
-        <h2 class="flowing-header" style="margin-bottom: 15px; min-height: 1.2em;"><span id="typed-header"></span></h2>
+        <h2 class="flowing-header" style="margin-bottom: 15px; min-height: 1.2em;"><span
+            id="typed-adventure-header"></span></h2>
         <p class="inventory-subtitle" style="margin-bottom: 60px; opacity: 0.8; min-height: 1.5em;"><span
-            id="typed-subheader"></span></p>
+            id="typed-adventure-subheader"></span></p>
 
         <div class="adventure-content fade-in-on-scroll">
           <ul class="achievements-list">
@@ -502,8 +465,7 @@
         <p class="inventory-subtitle" style="margin-bottom: 40px; opacity: 0.8;">Let's collaborate on your next magical
           project.</p>
 
-        <div class="footer-links"
-          style="display: flex; justify-content: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap;">
+        <div class="footer-links">
           <a href="mailto:Raudalsehli@gmail.com" class="footer-link">
             <span class="link-label">Email</span>
           </a>

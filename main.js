@@ -365,13 +365,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bookElement) {
     // Initialize the realistic page flip
     const pageFlip = new St.PageFlip(bookElement, {
-      width: 360,  // Base page width
-      height: 505, // Base page height
+      width: 450,  // Base page width (900/2)
+      height: 630, // Base page height
       size: "stretch", // Allow scaling for smaller viewports
-      minWidth: 280,
-      maxWidth: 360,
-      minHeight: 392,
-      maxHeight: 505,
+      minWidth: 320,
+      maxWidth: 450,
+      minHeight: 448,
+      maxHeight: 630,
       showCover: true,
       mobileScrollSupport: true,
       useMouseEvents: false,
@@ -404,25 +404,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- ADVENTURES SECTION ANIMATIONS ---
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Header Typewriter
-  const headerElem = document.getElementById('typed-header');
-  if (headerElem) {
-    new Typed('#typed-header', {
-      strings: ['Adventures I’ve Taken'],
+  // --- ADVENTURE SECTION TYPED.JS ---
+  const adventureHeader = document.getElementById('typed-adventure-header');
+  if (adventureHeader) {
+    new Typed('#typed-adventure-header', {
+      strings: ["Adventures I've Taken"],
       typeSpeed: 60,
-      showCursor: false,
-      startDelay: 500
-    });
-  }
-
-  // 2. Subheader Typewriter
-  const subheaderElem = document.getElementById('typed-subheader');
-  if (subheaderElem) {
-    new Typed('#typed-subheader', {
-      strings: ['A roadmap of milestones and achievements'],
-      typeSpeed: 40,
-      showCursor: false,
-      startDelay: 2000
+      backSpeed: 30,
+      loop: false,
+      showCursor: true,
+      cursorChar: '_',
+      onComplete: (self) => {
+        // Once header is done, start the subheader
+        const adventureSub = document.getElementById('typed-adventure-subheader');
+        if (adventureSub) {
+          new Typed('#typed-adventure-subheader', {
+            strings: ["The maps I've drawn and the paths I've cleared..."],
+            typeSpeed: 40,
+            showCursor: false
+          });
+        }
+      }
     });
   }
 

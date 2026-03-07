@@ -358,74 +358,89 @@ document.querySelectorAll('.location-node').forEach(node => {
 
 // Old orphaned javascript removed
 
-// --- BOOK FLIP ANIMATION (StPageFlip) ---
-document.addEventListener('DOMContentLoaded', () => {
-  const bookElement = document.getElementById('interactive-book');
-
-  if (bookElement) {
-    // Initialize the realistic page flip
-    const pageFlip = new St.PageFlip(bookElement, {
-      width: 450,  // Base page width (900/2)
-      height: 630, // Base page height
-      size: "stretch", // Allow scaling for smaller viewports
-      minWidth: 320,
-      maxWidth: 450,
-      minHeight: 448,
-      maxHeight: 630,
-      showCover: true,
-      mobileScrollSupport: true,
-      useMouseEvents: false,
-      clickEventForward: false
-    });
-
-    // Refresh ScrollTrigger on resize to fix layout shifts
-    window.addEventListener('resize', () => {
-      ScrollTrigger.refresh();
-    });
-
-    // Load pages from DOM
-    pageFlip.loadFromHTML(document.querySelectorAll('.book-page'));
-
-    // Hook up physical buttons
-    const btnLeft = document.getElementById('btn-page-left');
-    const btnRight = document.getElementById('btn-page-right');
-
-    if (btnLeft && btnRight) {
-      btnLeft.addEventListener('click', () => {
-        pageFlip.flipPrev();
-      });
-
-      btnRight.addEventListener('click', () => {
-        pageFlip.flipNext();
-      });
-    }
-  }
-});
+// --- BOOK FLIP ANIMATION (REMOVED) ---
+// PageFlip logic was removed in favor of the new About Me split layout.
 
 // --- ADVENTURES SECTION ANIMATIONS ---
 document.addEventListener('DOMContentLoaded', () => {
-  // --- ADVENTURE SECTION TYPED.JS ---
-  const adventureHeader = document.getElementById('typed-adventure-header');
-  if (adventureHeader) {
-    new Typed('#typed-adventure-header', {
-      strings: ["Adventures I've Taken"],
-      typeSpeed: 60,
-      backSpeed: 30,
-      loop: false,
-      showCursor: true,
-      cursorChar: '_',
-      onComplete: (self) => {
-        // Once header is done, start the subheader
-        const adventureSub = document.getElementById('typed-adventure-subheader');
-        if (adventureSub) {
-          new Typed('#typed-adventure-subheader', {
-            strings: ["The maps I've drawn and the paths I've cleared..."],
-            typeSpeed: 40,
-            showCursor: false
-          });
+  // 1. Header Typewriter
+  // --- TYPED.JS INITIALIZATION (Delayed until scrolled into view) ---
+  const initTyped = () => {
+    const headerElem = document.getElementById('typed-header');
+    if (headerElem && !headerElem.classList.contains('typed-done')) {
+      new Typed('#typed-header', {
+        strings: ['Adventures I’ve Taken'],
+        typeSpeed: 60,
+        showCursor: false,
+        onComplete: (self) => {
+          headerElem.classList.add('typed-done');
         }
-      }
+      });
+    }
+
+    const subheaderElem = document.getElementById('typed-subheader');
+    if (subheaderElem && !subheaderElem.classList.contains('typed-done')) {
+      new Typed('#typed-subheader', {
+        strings: ['A collection of achievements, projects, and milestones.'],
+        typeSpeed: 40,
+        showCursor: false,
+        startDelay: 1500,
+        onComplete: (self) => {
+          subheaderElem.classList.add('typed-done');
+        }
+      });
+    }
+  };
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.create({
+      trigger: '#adventures-section',
+      start: 'top 80%',
+      onEnter: () => initTyped(),
+      once: true
     });
+  } else {
+    // Fallback if GSAP is not present (though it should be)
+    initTyped();
+  }
+
+  // 2. Mini Projects Header Typewriter
+  const initMiniProjectsTyped = () => {
+    const miniHeader = document.getElementById('typed-mini-header');
+    if (miniHeader && !miniHeader.classList.contains('typed-done')) {
+      new Typed('#typed-mini-header', {
+        strings: ['MINI PROJECTS'],
+        typeSpeed: 60,
+        showCursor: false,
+        onComplete: (self) => {
+          miniHeader.classList.add('typed-done');
+        }
+      });
+    }
+
+    const miniSubheader = document.getElementById('typed-mini-subheader');
+    if (miniSubheader && !miniSubheader.classList.contains('typed-done')) {
+      new Typed('#typed-mini-subheader', {
+        strings: ['Every step forward began with curiosity'],
+        typeSpeed: 40,
+        showCursor: false,
+        startDelay: 1000,
+        onComplete: (self) => {
+          miniSubheader.classList.add('typed-done');
+        }
+      });
+    }
+  };
+
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.create({
+      trigger: '#about',
+      start: 'top 80%',
+      onEnter: () => initMiniProjectsTyped(),
+      once: true
+    });
+  } else {
+    initMiniProjectsTyped();
   }
 
   // 3. GSAP Scroll Fade-in for Achievements

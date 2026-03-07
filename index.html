@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <link rel="icon" type="image/png" href="assets/head.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raud's World</title>
@@ -64,7 +65,7 @@
 
       <!-- Welcome Text behind the gate -->
       <h2 class="bloodborne-text" id="welcome-text">
-        Welcome To Raud's Journy
+        WELCOME TO RAUD'S JOURNY
       </h2>
 
       <div class="scroll-hint bloodborne-text"
@@ -74,140 +75,113 @@
     </section>
 
     <!-- 2nd Page: Cozy Gamer Girl Room -->
-    <section id="gamer-girl-section" class="scroll-section">
+    <section id="gamer-girl-section" class="scroll-section flex-column">
 
-      <!-- Left side: Book Content -->
-      <div class="book-container-wrapper">
+      <!-- Centered Header -->
+      <!-- Centered Header -->
+      <h2 class="about-header gold-header flowing-header">MEETING RAUD</h2>
+
+      <div class="about-split-container">
+        <!-- Left Side: Flower Videos and Text in horizontal layout -->
+        <div class="about-left">
+          <div class="flower-layout-horizontal">
+            <video src="assets/purpleflowL.mp4" autoplay loop muted playsinline class="flower-video"></video>
+            <p class="scrolling-text">I tested systems for a living… but secretly,I build worlds.
+              <br> I’m a Computer Scientist who moves between logic and imagination. <br>
+              <br> From Quality Assurance and automation to designing
+              interactive ideas and game concepts.<br> I’m inspired by anime, games, late-night playlists, and the
+              stories
+              that stay with you long after they end.
+            </p>
+            <video src="assets/purpleflowR.mp4" autoplay loop muted playsinline class="flower-video"></video>
+          </div>
+        </div>
+
+        <!-- Right Side: Animated Room Video -->
+        <div class="about-right">
+          <div class="room-video-wrapper">
+            <video src="assets/animated_room.mp4" autoplay loop muted playsinline class="about-room-video"></video>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+
+    <!-- Right Side Cards -->
+    <div class="cards-wrapper">
+      <!-- Card 1 -->
+      <!-- Hero / Cover Section: Stacked Sticky Cards -->
+      <section id="hero" class="stacked-cards-section flex-row">
+
         <!-- Background Stars -->
         <div class="stars-container"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
         </div>
 
-        <!-- Book & Side Videos Wrapper -->
-        <div class="book-video-flex">
-          <div class="gamer-girl-content" style="margin-right: -40px; z-index: 4;">
-            <video src="assets/purpleflowR.mp4" autoplay loop muted playsinline
-              style="width: 150px; height: auto; border-radius: 8px;"></video>
-          </div>
-
-          <!-- Interactive Book Structure (StPageFlip) & Controls -->
-          <div style="flex-direction: column; display: flex; align-items: center;">
-            <div id="interactive-book">
-              <!-- Cover (Hard) -->
-              <div class="book-page book-cover-page" data-density="hard">
-                <div class="page-content page-cover"
-                  style="background-image: url('assets/meeting_raud_book_nobg.png'); background-size: 100% 100%; width: 100%; height: 100%;">
-                </div>
-              </div>
-
-              <!-- Inner Pages (Dynamic) -->
-              <div class="book-page">
-                <div class="page-content">
-                  <h2 class="bloodborne-text" style="color: #000; font-size: 2rem; margin-bottom: 20px;">Meeting Raud
-                  </h2>
-                  <p style="color: #333; font-size: 1.1rem; line-height: 1.6;">Hi, I'm Raud Alsehli. A passionate Game
-                    Designer and Software Tester. Welcome to my magical portfolio book.</p>
-                </div>
-              </div>
-
-              <div class="book-page">
-                <div class="page-content">
-                  <h2 class="bloodborne-text" style="color: #000; font-size: 2rem; margin-bottom: 20px;">The Journey
-                  </h2>
-                  <p style="color: #333; font-size: 1.1rem; line-height: 1.6;">Every project is a quest. Every line of
-                    code is a spell. Step into my world of pixels and passion.</p>
-                </div>
-              </div>
-
-              <!-- More pages can be added here -->
-            </div>
-
-            <!-- Themed Navigation Wrapper -->
-            <div class="book-navigation">
-              <button class="page-turn-btn" id="btn-page-left">&#10094;</button>
-              <button class="page-turn-btn" id="btn-page-right">&#10095;</button>
-            </div>
-          </div>
-
-          <div class="gamer-girl-content" style="margin-left: -40px; z-index: 4;">
-            <video src="assets/purpleflowL.mp4" autoplay loop muted playsinline
-              style="width: 150px; height: auto; border-radius: 8px;"></video>
-          </div>
+        <!-- Left Side Title Text -->
+        <div class="cards-title-container">
+          <h2 class="bloodborne-text" id="path-text">
+            The<br>Path<br>So<br>Far
+          </h2>
         </div>
-      </div>
-
-      <!-- Right side: Video -->
-      <div
-        style="flex: 1; display: flex; justify-content: center; align-items: center; border-left: 2px solid var(--accent-gold); padding: 40px;">
-        <video src="assets/animated_room.mp4" autoplay loop muted playsinline
-          style="width: 100%; max-width: 600px; height: auto; border: 2px solid var(--accent-gold); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"></video>
-      </div>
-    </section>
-
-    <!-- Hero / Cover Section: Stacked Sticky Cards -->
-    <section id="hero" class="stacked-cards-section flex-row">
-      <!-- Background Stars -->
-      <div class="stars-container"
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
-      </div>
-
-      <!-- Left Side Title Text -->
-      <div class="cards-title-container">
-        <h2 class="bloodborne-text" id="path-text">
-          The<br>Path<br>So<br>Far
-        </h2>
-      </div>
-
-      <!-- Right Side Cards -->
-      <div class="cards-wrapper">
-        <!-- Card 1 -->
+        <!-- Card 2 -->
         <div class="stacked-card" id="card-1">
           <div class="card-inner" style="color: #000;">
-            <div class="card-header" style="background: #F3E3D0;">
+            <div class="card-header" style="background: #FFF78A;">
               <span class="card-year" style="color: #000;">2025</span>
               <span class="card-category" style="color: #000;">Mirai, a scopely company</span>
             </div>
-            <div class="card-main" style="background: #F3E3D0;">
-              <h2 class="card-title" style="color: #000;">Jr. Quality Assurance</h2>
+            <div class="card-main" style="background: #FFF9AF;">
+              <h2 class="card-title" style="color: #000; font-size: 1.4rem;">Jr. Quality Assurance</h2>
             </div>
-            <div class="card-image-wrapper" style="background: #FEEBF6; padding: 20px; overflow-y: auto; flex-grow: 1;">
+            <div class="card-image-wrapper"
+              style="background: #FFF9AF; font-size: 1.4rem; padding: 20px; overflow-y: auto; flex-grow: 1;">
               <p style="color: #000; font-size: 0.85rem; line-height: 1.6; margin: 0; white-space: pre-line;">
-                •Conducted functional, usability, and regression testing on various mobile games.
-                • Reported, tracked, and validated bugs using structured QA workflows.
-                • Documented test cases and results using TestRail.
-                • Provided feedback on game mechanics, performance, and user experience.
-                • Worked with cross-functional teams to ensure fixes were correctly implemented.
-                • Participated in brainstorming sessions for gameplay and feature improvements.</p>
+                <br> ✦ Conducted functional, usability, and regression testing on various mobile games.</br>
+                ✦ Reported, tracked, and validated bugs using structured QA workflows.
+                <br>✦ Documented test cases and results using TestRail.</br>
+                ✦ Provided feedback on game mechanics, performance, and user experience.
+                <br>✦ Worked with cross-functional teams to <br>ensure fixes were correctly implemented.</br>
+                ✦ Participated in brainstorming sessions for gameplay and feature improvements.</br>
+              </p>
             </div>
+
           </div>
         </div>
 
-        <!-- Card 2 -->
+        <!-- Card 3 -->
         <div class="stacked-card" id="card-2">
           <div class="card-inner" style="color: #000;">
-            <div class="card-header" style="background: #F3E3D0;">
+            <div class="card-header" style="background: #A8FBD3;">
               <span class="card-year" style="color: #000;">2024</span>
               <span class="card-category" style="color: #000;">UiPath &amp; SDA</span>
             </div>
-            <div class="card-main" style="background: #F3E3D0;">
+            <div class="card-main" style="background: #CFFFE2;">
               <h2 class="card-title" style="color: #000; font-size: 1.4rem;">RPA - Robotic Process Automation</h2>
             </div>
-            <div class="card-image-wrapper" style="background: #AACDDC; padding: 20px; overflow-y: auto; flex-grow: 1;">
-              <p style="color: #000; font-size: 0.8rem; line-height: 1.6; margin: 0; white-space: pre-line;">
+            <div class="card-image-wrapper" style="background: #CFFFE2; padding: 20px; overflow-y: auto; flex-grow: 1;">
+              <p style="color: #000; font-size: 0.85rem; line-height: 1.6; margin: 0; white-space: pre-line;">
                 <strong>Automation Developer:</strong>
-                • Develop automation projects and components according to the solution design, using the dedicated
+                ✦ Develop automation projects and components according
+                to the solution design, using the dedicated
                 automation software.
-                • Adhere to the automation development methodologies and RPA best practices.
-                • Do software testing for the automation workflows and work with the Tester.
-                • Create the technical documentation for the automations developed, according to the best practices.
-                • Review code written by peers and facilitate knowledge transfer.
+                ✦ Adhere to the automation development
+                methodologies and RPA best practices.
+                ✦ Do software testing for the automation workflows and work with the Tester.
+                ✦ Create the technical documentation forthe automations developed, according to the best
+                practices.
+                ✦ Review code written by peers and facilitate knowledge transfer.
+              </p>
 
+              <p style="color: #000; font-size: 0.85rem; line-height: 1.6; margin: 0; white-space: pre-line;">
                 <strong>Business Analyst:</strong>
-                • Engage with stakeholders and conduct high-level assessments to identify business processes with
+                ✦ Engage with stakeholders and conduct high-level assessments to identify business processes with
                 automation potential.
-                • Perform in-depth process analysis for the processes selected for automation and create the relevant
+                ✦ Perform in-depth process analysis for the processes selected for automation and create the relevant
                 documents, such as the Process Definition Document.
-                • Define the business requirements and the test case scenarios for the future state, automated business
+                ✦ Define the business requirements and the test case scenarios for the future state, automated business
                 processes.
               </p>
             </div>
@@ -217,37 +191,42 @@
         <!-- Card 3 -->
         <div class="stacked-card" id="card-3">
           <div class="card-inner" style="color: #000;">
-            <div class="card-header" style="background: #FFCDB2;">
+            <div class="card-header" style="background: #009EFF;">
               <span class="card-year" style="color: #000;">2023</span>
               <span class="card-category" style="color: #000;">King Fahad Hospital</span>
             </div>
-            <div class="card-main" style="background: #FFCDB2;">
-              <h2 class="card-title" style="color: #000;">IT Department</h2>
+            <div class="card-main" style="background: #BBFBFF;">
+              <h2 class="card-title" style="color: #000; font-size: 1.4rem;">IT COOP </h2>
             </div>
-            <div class="card-image-wrapper" style="background: #D6C0B3; padding: 20px; overflow-y: auto; flex-grow: 1;">
+            <div class="card-image-wrapper" style="background: #BBFBFF; padding: 20px; overflow-y: auto; flex-grow: 1;">
               <p style="color: #000; font-size: 0.85rem; line-height: 1.6; margin: 0; white-space: pre-line;">
-                • Provided technical support to hospital staff for computers,
+                <br> ✦ Provided technical support to hospital staff for computers,
                 printers, and network connectivity issues.
 
-                • Assisted in installing, configuring, and maintaining computer systems and software used in hospital
+                ✦ Assisted in installing, configuring, and maintaining computer systems and software used in hospital
                 departments.
 
-                • Assisted in user account setup and access management for hospital systems.
+                ✦ Assisted in user account setup and access management for hospital systems.
 
-                • Documented technical issues and solutions to improve IT support processes.</p>
+                ✦ Documented technical issues and solutions to improve IT support processes.<br>
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- About Section -->
-    <section id="about" class="scroll-section">
+    <section id="about" class="scroll-section flex-column">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <h2 class="flowing-header gold-header" style="margin-bottom: 10px;"><span id="typed-mini-header"></span></h2>
+        <p class="inventory-subtitle"><span id="typed-mini-subheader"></span></p>
+      </div>
+
       <div class="split-layout">
         <!-- Left Side: Illustration -->
         <div class="split-left flex-center">
           <video src="assets/reacord.mp4" autoplay loop muted playsinline
-            style="width: 100%; max-width: 450px; height: auto; display: block;"></video>
+            style="width: 100%; max-width: 450px; height: auto; display: block; margin-top: 40px;"></video>
         </div>
 
         <!-- Right Side: Game Gallery -->
@@ -301,7 +280,7 @@
       <div class="stars-container"
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></div>
       <div style="position: relative; z-index: 10; text-align: center; width: 100%;">
-        <h2 class="flowing-header">Inventory</h2>
+        <h2 class="flowing-header gold-header">INVENTORY</h2>
         <p class="inventory-subtitle">Tools and artifacts collected along the journey</p>
       </div>
 
@@ -365,22 +344,13 @@
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></div>
 
       <div style="position: relative; z-index: 10; text-align: center; width: 100%; max-width: 900px; padding: 0 20px;">
-        <h2 class="flowing-header" style="margin-bottom: 15px; min-height: 1.2em;"><span
-            id="typed-adventure-header"></span></h2>
+        <h2 class="flowing-header gold-header" style="margin-bottom: 15px; min-height: 1.2em;"><span
+            id="typed-header"></span></h2>
         <p class="inventory-subtitle" style="margin-bottom: 60px; opacity: 0.8; min-height: 1.5em;"><span
-            id="typed-adventure-subheader"></span></p>
+            id="typed-subheader"></span></p>
 
         <div class="adventure-content fade-in-on-scroll">
           <ul class="achievements-list">
-            <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
-                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> 2nd place in Ministry
-              of Environment, Water & Agriculture hackathon</li>
-            <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
-                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span>
-              Researches:
-              1.Detecting and Analyzing Facial and Eye Features of Drugs Abuser Using AI
-
-              <div> 2.Enhancing Pedestrian Pose Detection using Deep Learning Techniques</div>
             <li style="display: flex; align-items: flex-start;"><span
                 style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Unity gameteams for
               game development - Taibah Vally with CG Spectrum</li>
@@ -419,6 +389,17 @@
             </li>
             <li style="display: flex; align-items: flex-start;"><span
                 style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> Pizza Delivery System
+            <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span> 2nd
+              place in Ministry
+              of Environment, Water & Agriculture hackathon</li>
+            <li style="margin-bottom: 25px; display: flex; align-items: flex-start;"><span
+                style="color: var(--accent-gold); margin-right: 15px; font-size: 1.5rem;">✦</span>
+              Researches:
+              1.Detecting and Analyzing Facial and Eye Features of Drugs Abuser Using AI
+
+              <div> 2.Enhancing Pedestrian Pose Detection using Deep Learning Techniques</div>
+
             </li>
           </ul>
         </div>
@@ -428,9 +409,8 @@
     <!-- Transitional Half Page -->
     <section id="transition-half"
       style="position: relative; width: 100%; height: 50vh; background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%); margin-bottom: -50vh; z-index: 10; pointer-events: none; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 5vh;">
-      <h2 class="flowing-header" style="opacity: 0.3; font-size: 3rem; letter-spacing: 10px; margin-bottom: 10px;">The
-        Final Shrine</h2>
-      <p class="inventory-subtitle" style="opacity: 0.2; letter-spacing: 4px; font-size: 1rem;">Rest here, Traveler</p>
+      <h2 class="flowing-header gold-header">THE FINAL SHRINE </h2>
+      <p class="inventory-subtitle" style="opacity: 0.6; letter-spacing: 4px; font-size: 1rem;">Rest here, Traveler</p>
     </section>
 
 
@@ -452,7 +432,8 @@
           You've
           journeyed far...</h2>
         <p class="flowing-header"
-          style="font-size: 1.5rem; margin: 0 auto; max-width: 800px; line-height: 1.4; letter-spacing: 2px;">Thank you
+          style="font-size: 1.5rem; margin: 0 auto; max-width: 800px; line-height: 1.4; letter-spacing: 2px;">
+          Thank you
           for exploring Raud's World</p>
       </div>
     </section>
@@ -461,26 +442,32 @@
     <footer id="main-footer"
       style="background: #000; padding: 100px 0 40px 0; position: relative; z-index: 10; border-top: 1px solid rgba(202, 164, 103, 0.1);">
       <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; text-align: center;">
-        <h2 class="flowing-header footer-heading" style="margin-bottom: 20px;">Ready For The Next Adventure?</h2>
+        <h2 class="flowing-header gold-header footer-heading" style="margin-bottom: 20px;">Ready For The Next Adventure?
+        </h2>
         <p class="inventory-subtitle" style="margin-bottom: 40px; opacity: 0.8;">Let's collaborate on your next magical
           project.</p>
 
-        <div class="footer-links">
-          <a href="mailto:Raudalsehli@gmail.com" class="footer-link">
-            <span class="link-label">Email</span>
+        <div class="footer-links"
+          style="display: flex; justify-content: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; align-items: center;">
+          <a href="mailto:Raudalsehli@gmail.com" class="footer-icon-link">
+            <img src="assets/email.png" alt="Email" class="footer-icon">
           </a>
-          <a href="https://github.com/rauodalsehli" target="_blank" rel="noopener noreferrer" class="footer-link">
-            <span class="link-label">GitHub</span>
+          <a href="https://github.com/rauodalsehli" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+            <img src="assets/github.png" alt="GitHub" class="footer-icon">
           </a>
+
           <a href="http://linkedin.com/in/raud-alsehli-016903179" target="_blank" rel="noopener noreferrer"
-            class="footer-link">
-            <span class="link-label">LinkedIn</span>
+            class="footer-icon-link">
+            <img src="assets/linkedin.jpg" alt="linkedin" class="footer-icon">
           </a>
-          <a href="https://x.com/RaudExtraO" target="_blank" rel="noopener noreferrer" class="footer-link">
-            <span class="link-label">X</span>
+
+
+          <a href="https://x.com/RaudExtraO" target="_blank" rel="noopener noreferrer" class="footer-icon-link"
+            title="X">
+            <img src="assets/x.png" alt="X" class="footer-icon">
           </a>
-          <a href="assets/Raud_CV.pdf" download class="footer-link">
-            <span class="link-label">Download CV</span>
+          <a href="assets/Raud_CV.pdf" download class="footer-icon-link" title="Download CV">
+            <img src="assets/ec.png" alt="CV" class="footer-icon">
           </a>
         </div>
 
@@ -492,9 +479,6 @@
     </footer>
 
   </main>
-
-  </main>
-
   <script src="main.js"></script>
 </body>
 

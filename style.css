@@ -2625,39 +2625,13 @@ video {
     padding-bottom: 30px;
   }
 
-  /* Override the gold/yellow card backgrounds to black on mobile */
-  .card-inner,
-  .card-header,
-  .card-main,
-  .card-image-wrapper {
-    background: #000 !important;
-  }
-
-  .card-inner {
-    border: 1px solid rgba(202, 164, 103, 0.2);
-  }
-
   .card-header {
     padding: 15px 20px;
     font-size: 0.8rem;
-    border-bottom: 1px solid rgba(202, 164, 103, 0.15) !important;
-  }
-
-  .card-year,
-  .card-category {
-    color: var(--accent-gold) !important;
-  }
-
-  .card-title {
-    color: var(--accent-gold) !important;
   }
 
   .card-main {
     padding: 20px;
-  }
-
-  .card-image-wrapper p {
-    color: rgba(255, 255, 255, 0.85) !important;
   }
 
   .card-title {

@@ -460,4 +460,49 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     );
   });
+
+  // --- MUSIC TOGGLE LOGIC ---
+  const bgm = document.getElementById('bgm');
+  const musicToggle = document.getElementById('music-toggle');
+  const toggleText = musicToggle.querySelector('.toggle-text');
+  let isPlaying = false;
+
+  const toggleMusic = () => {
+    if (isPlaying) {
+      bgm.pause();
+      musicToggle.classList.remove('playing');
+      musicToggle.classList.add('paused');
+      toggleText.textContent = 'MUSIC OFF';
+    } else {
+      bgm.play().catch(err => console.log("Playback blocked:", err));
+      musicToggle.classList.add('playing');
+      musicToggle.classList.remove('paused');
+      toggleText.textContent = 'MUSIC ON';
+    }
+    isPlaying = !isPlaying;
+  };
+
+  if (musicToggle) {
+    musicToggle.addEventListener('click', toggleMusic);
+  }
+
+  // Auto-play attempt on first user interaction for browsers that block auto-play
+  const startAudioOnInteraction = () => {
+    if (!isPlaying && bgm) {
+      bgm.play().then(() => {
+        isPlaying = true;
+        musicToggle.classList.add('playing');
+        musicToggle.classList.remove('paused');
+        toggleText.textContent = 'MUSIC ON';
+      }).catch(err => console.log("Initial playback blocked:", err));
+    }
+    document.removeEventListener('click', startAudioOnInteraction);
+    document.removeEventListener('scroll', startAudioOnInteraction);
+    document.removeEventListener('keydown', startAudioOnInteraction);
+  };
+
+  document.addEventListener('click', startAudioOnInteraction);
+  document.addEventListener('scroll', startAudioOnInteraction);
+  document.addEventListener('keydown', startAudioOnInteraction);
 });
+

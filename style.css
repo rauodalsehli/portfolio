@@ -2498,34 +2498,38 @@ video {
   }
 
   #gamer-girl-section {
-    overflow: visible;
-    height: auto;
-    min-height: auto;
-    padding-bottom: 60px;
-    position: relative;
-    z-index: 20;
-    background: #000;
+    overflow: hidden !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 60px !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    z-index: 20 !important;
+    background: #000 !important;
   }
 
-  .about-split-container {
-    flex-direction: column;
-    gap: 25px;
-    min-height: auto;
+  #gamer-girl-section .about-split-container {
+    flex-direction: column !important;
+    gap: 25px !important;
+    min-height: auto !important;
+    position: relative;
+    z-index: 5;
   }
 
   /* Move room video ABOVE the text on mobile */
-  .about-right {
-    flex: none;
-    width: 100%;
-    order: -1;
+  #gamer-girl-section .about-right {
+    flex: none !important;
+    width: 100% !important;
+    order: -1 !important;
   }
 
-  .about-left {
-    flex: none;
-    width: 100%;
-    order: 1;
+  #gamer-girl-section .about-left {
+    flex: none !important;
+    width: 100% !important;
+    order: 1 !important;
     position: relative;
     z-index: 5;
+    background: #000;
   }
 
   .room-video-wrapper {
@@ -2541,7 +2545,7 @@ video {
 
   /* Keep flowers on LEFT and RIGHT of text — row layout */
   .flower-layout-horizontal {
-    flex-direction: row;
+    flex-direction: row !important;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -2561,26 +2565,27 @@ video {
     line-height: 1.5;
   }
 
-  /* --- Stacked Cards: prevent overlap with section above --- */
-  .stacked-cards-section {
-    flex-direction: column !important;
-    position: relative;
-    z-index: 10;
+  /* --- Stacked Cards: KILL sticky on mobile, prevent overlap --- */
+  .cards-wrapper {
+    width: 100% !important;
+    position: relative !important;
+    z-index: 5 !important;
+    clear: both;
   }
 
-  .cards-wrapper {
-    width: 100%;
-    position: relative;
-    z-index: 10;
+  .stacked-cards-section {
+    flex-direction: column !important;
+    position: relative !important;
+    z-index: 5 !important;
   }
 
   .cards-title-container {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-right: none;
-    padding: 30px 15px;
-    background: #000;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    border-right: none !important;
+    padding: 30px 15px !important;
+    background: #000 !important;
   }
 
   .cards-title-container .bloodborne-text {
@@ -2589,14 +2594,19 @@ video {
   }
 
   .stacked-card {
-    position: relative;
-    height: auto;
-    min-height: auto;
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    top: auto !important;
+  }
+
+  .stacked-card:hover {
+    transform: none !important;
   }
 
   .card-inner {
-    height: auto;
-    min-height: auto;
+    height: auto !important;
+    min-height: auto !important;
     padding-bottom: 30px;
   }
 

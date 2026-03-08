@@ -883,6 +883,11 @@ h4,
   display: block;
 }
 
+/* --- Mobile-only about text section (hidden on desktop) --- */
+#about-text-section {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .flower-layout-horizontal {
     gap: 10px;
@@ -2523,13 +2528,23 @@ video {
     order: -1 !important;
   }
 
+  /* Hide the original flower/text on mobile — it's now in its own section */
   #gamer-girl-section .about-left {
-    flex: none !important;
-    width: 100% !important;
-    order: 1 !important;
+    display: none !important;
+  }
+
+  /* Show the standalone mobile about text section */
+  #about-text-section {
+    display: block !important;
+    background: #000 !important;
+    padding: 40px 15px !important;
     position: relative;
-    z-index: 5;
-    background: #000;
+    z-index: 20;
+  }
+
+  .about-text-mobile-content {
+    max-width: 100%;
+    margin: 0 auto;
   }
 
   .room-video-wrapper {
@@ -2610,13 +2625,39 @@ video {
     padding-bottom: 30px;
   }
 
+  /* Override the gold/yellow card backgrounds to black on mobile */
+  .card-inner,
+  .card-header,
+  .card-main,
+  .card-image-wrapper {
+    background: #000 !important;
+  }
+
+  .card-inner {
+    border: 1px solid rgba(202, 164, 103, 0.2);
+  }
+
   .card-header {
     padding: 15px 20px;
     font-size: 0.8rem;
+    border-bottom: 1px solid rgba(202, 164, 103, 0.15) !important;
+  }
+
+  .card-year,
+  .card-category {
+    color: var(--accent-gold) !important;
+  }
+
+  .card-title {
+    color: var(--accent-gold) !important;
   }
 
   .card-main {
     padding: 20px;
+  }
+
+  .card-image-wrapper p {
+    color: rgba(255, 255, 255, 0.85) !important;
   }
 
   .card-title {

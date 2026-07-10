@@ -293,6 +293,7 @@ function buildLinks(item) {
 
 if (galleryItems.length && gameModal) {
   galleryItems.forEach(item => {
+    if (item.classList.contains('gif-source-card')) return; // handled separately
     item.addEventListener('click', () => {
       resetModal();
       const title = item.getAttribute('data-title');
@@ -340,19 +341,6 @@ if (galleryItems.length && gameModal) {
   });
 }
 
-// Adventures Map Logic
-const projectDetails = document.getElementById('project-details');
-const projects = {
-  '1': '<h3>Fantasy Quest</h3><p><strong>Role:</strong> QA Lead</p><p><strong>Tools:</strong> Jira, Unity</p><p><strong>Challenge:</strong> 500+ collision bugs in open world.</p><p><strong>Outcome:</strong> Flawless launch.</p>',
-  '2': '<h3>Cosmic UI</h3><p><strong>Role:</strong> Frontend Dev</p><p><strong>Tools:</strong> React, Three.js</p><p><strong>Challenge:</strong> Rendering 10k stars smoothly.</p><p><strong>Outcome:</strong> 60fps stable performance.</p>'
-};
-document.querySelectorAll('.location-node').forEach(node => {
-  node.addEventListener('click', () => {
-    projectDetails.innerHTML = projects[node.dataset.project];
-    projectDetails.style.transform = 'scale(1.05)';
-    setTimeout(() => projectDetails.style.transform = 'scale(1)', 200);
-  });
-});
 
 // Old skills logic removed
 
@@ -363,46 +351,6 @@ document.querySelectorAll('.location-node').forEach(node => {
 
 // --- ADVENTURES SECTION ANIMATIONS ---
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Header Typewriter
-  // --- TYPED.JS INITIALIZATION (Delayed until scrolled into view) ---
-  const initTyped = () => {
-    const headerElem = document.getElementById('typed-header');
-    if (headerElem && !headerElem.classList.contains('typed-done')) {
-      new Typed('#typed-header', {
-        strings: ['Adventures I’ve Taken'],
-        typeSpeed: 60,
-        showCursor: false,
-        onComplete: (self) => {
-          headerElem.classList.add('typed-done');
-        }
-      });
-    }
-
-    const subheaderElem = document.getElementById('typed-subheader');
-    if (subheaderElem && !subheaderElem.classList.contains('typed-done')) {
-      new Typed('#typed-subheader', {
-        strings: ['A collection of achievements, projects, and milestones.'],
-        typeSpeed: 40,
-        showCursor: false,
-        startDelay: 1500,
-        onComplete: (self) => {
-          subheaderElem.classList.add('typed-done');
-        }
-      });
-    }
-  };
-
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    ScrollTrigger.create({
-      trigger: '#adventures-section',
-      start: 'top 80%',
-      onEnter: () => initTyped(),
-      once: true
-    });
-  } else {
-    // Fallback if GSAP is not present (though it should be)
-    initTyped();
-  }
 
   // 2. Mini Projects Header Typewriter
   const initMiniProjectsTyped = () => {
@@ -504,5 +452,36 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', startAudioOnInteraction);
   document.addEventListener('scroll', startAudioOnInteraction);
   document.addEventListener('keydown', startAudioOnInteraction);
+
+  // --- GIF GALLERY MODAL LOGIC ---
+  const gifModal = document.getElementById('gif-modal');
+  const unityModal = document.getElementById('unity-modal');
+  const cardMaya = document.getElementById('card-maya');
+  const cardUnity = document.getElementById('card-unity');
+  const gifModalClose = document.querySelector('.gif-modal-close');
+  const unityModalClose = document.querySelector('.unity-modal-close');
+
+  function closeAllGifModals() {
+    if (gifModal) gifModal.classList.remove('active');
+    if (unityModal) unityModal.classList.remove('active');
+  }
+
+  if (cardMaya && gifModal) {
+    cardMaya.addEventListener('click', () => gifModal.classList.add('active'));
+  }
+  if (cardUnity && unityModal) {
+    cardUnity.addEventListener('click', () => unityModal.classList.add('active'));
+  }
+
+  if (gifModalClose) gifModalClose.addEventListener('click', closeAllGifModals);
+  if (unityModalClose) unityModalClose.addEventListener('click', closeAllGifModals);
+
+  [gifModal, unityModal].forEach(modal => {
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeAllGifModals();
+      });
+    }
+  });
 });
 

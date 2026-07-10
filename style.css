@@ -257,363 +257,14 @@ h4,
 
 /* Old gate section removed as it is now combined into welcome-section */
 
-/* --- THE PATH SO FAR SECTION --- */
-.path-section {
-  position: relative;
-  width: 100%;
-  padding: 30px 0;
-  /* Even smaller padding */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: #000;
-  /* Dark to match the gate theme */
-  border-top: 1px solid rgba(230, 240, 255, 0.2);
-  border-bottom: 1px solid rgba(230, 240, 255, 0.2);
-}
 
-.path-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
-  z-index: 1;
-}
-
-.path-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.path-title {
-  font-family: var(--font-header);
-  font-size: 4rem;
-  color: var(--accent-gold, #c4a46a);
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
-  margin: 0;
-  letter-spacing: 0.05em;
-}
-
-/* --- STACKED STICKY CARDS --- */
-.stacked-cards-section {
-  position: relative;
-  /* Override default section padding (80px 5%) to allow full screen edges horizontally,
-     but keep extra bottom padding so we can scroll past the last card */
-  padding: 0;
-  /* Remove bottom padding as cards will scroll naturally on the right */
-  /* The container needs to give room for cards to scroll up and stick.
-     Each card will stay on screen as you scroll until the section ends. */
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.cards-title-container {
-  width: 25%;
-  flex-shrink: 0;
-  /* Prevent the title container from shrinking */
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid rgba(230, 240, 255, 0.2);
-  z-index: 50;
-  /* Keep text above everything */
-  background: var(--btn-navy);
-}
-
-.cards-title-container .bloodborne-text {
-  opacity: 0.8 !important;
-  /* Override the default opacity: 0 hidden state */
-  transform: scale(1);
-  /* Ensure it is fully scaled */
-  color: var(--accent-gold);
-  font-size: 3rem;
-  letter-spacing: 10px;
-  text-transform: uppercase;
-}
-
-.cards-wrapper {
-  flex: 1;
-  /* Let it grow to fill the remaining 75% space */
-  min-width: 0;
-  /* Fixes flexbox overflow issue where content pushes past boundaries */
-  margin: 5;
-  padding: 5;
-  /* Remove padding to hit edges */
-  display: flex;
-  flex-direction: column;
-}
-
-.stacked-card {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  cursor: pointer;
-}
-
-#card-1 {
-  z-index: 10;
-}
-
-#card-2 {
-  z-index: 20;
-}
-
-#card-3 {
-  z-index: 30;
-}
-
-.stacked-card:hover {
-  transform: translateY(-40px);
-  /* Lift up slightly more as requested */
-  z-index: 100 !important;
-}
-
-.stacked-card:hover .card-header {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-}
-
-.stacked-card:hover .card-inner {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-}
-
-.card-inner {
-  background-color: var(--card-bg, #1e1e1e);
-  border-radius: 0;
-  /* Flat edges for full-screen feel */
-  height: 100vh;
-  /* Fill the whole viewport vertically */
-  overflow-y: auto;
-  /* Allow scrolling for long content */
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-}
-
-/* Specific Card Themes */
-#card-1 .card-inner {
-  background-color: #FFF9AF;
-  color: #FFF9AF;
-}
-
-#card-2 .card-inner {
-  background-color: #CFFFE2;
-  color: #CFFFE2;
-}
-
-#card-3 .card-inner {
-  background-color: #BBFBFF;
-  color: #BBFBFF;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 30px;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  opacity: 0.9;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#card-2 .card-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.card-main {
-  padding: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-title {
-  font-family: var(--font-header);
-  font-size: 2.2rem;
-  /* Reduced from 3rem for better fit */
-  margin: 0;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-}
-
-.card-arrow {
-  font-size: 2.5rem;
-  font-weight: 300;
-}
-
-.card-image-wrapper {
-  width: 100%;
-  flex-grow: 1;
-  /* Fill the rest of the 100vh card */
-  overflow: hidden;
-}
-
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-#hero {
-  background: transparent;
-  /* lets the navy scene-background show through */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.hero-frame {
-  width: 100%;
-  max-width: 900px;
-  min-height: 80vh;
-  border: 1px solid var(--accent-gold);
-  background: black;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Push content down slightly from top */
-  justify-content: flex-start;
-  text-align: center;
-  padding: 0px 60px 60px 60px;
-  /* Reduced top padding to absolute 0 */
-  box-sizing: border-box;
-  margin: 40px auto;
-}
-
-/* Corner accents for the frame matching the image */
-.hero-frame::before,
-.hero-frame::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--accent-gold);
-}
-
-.hero-frame::before {
-  top: 15px;
-  left: 15px;
-  border-right: none;
-  border-bottom: none;
-}
-
-.hero-frame::after {
-  bottom: 15px;
-  right: 15px;
-  border-left: none;
-  border-top: none;
-}
-
-.hero-title {
-  color: var(--accent-gold);
-  font-family: var(--font-serif);
-  font-size: 4.5rem;
-  /* Slightly smaller text size */
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 0px;
-  /* Absolute 0 margin to sit completely up against the top border */
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.hero-subtitle {
-  color: #dfdfdf;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.8rem;
-  margin-bottom: auto;
-  /* Pushes the elements beneath it down to the center/bottom */
-}
-
-.hero-intro {
-  color: var(--accent-gold);
-  max-width: 600px;
-  margin: 0 auto 60px auto;
-  font-size: 1.2rem;
-  line-height: 1.6;
-}
-
-/* The oval button representation */
-.oval-decoration {
-  width: 200px;
-  height: 60px;
-  border: 1px solid var(--accent-gold);
-  border-radius: 50%;
-  background: #f8f5f0;
-  /* cream center */
-  margin-bottom: 60px;
-  box-shadow: inset 0 0 0 4px black;
-  /* Creates the double border effect seen in the image */
-}
-
-.hero-intro {
-  color: var(--accent-gold);
-  max-width: 500px;
-  margin-bottom: 40px;
-  font-size: 1.1rem;
-}
-
-.btn-outline-gold {
-  display: inline-block;
-  padding: 15px 40px;
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  background: transparent;
-}
-
-.btn-outline-gold:hover {
-  background: rgba(202, 164, 103, 0.1);
-  box-shadow: 0 0 15px rgba(202, 164, 103, 0.2);
-}
-
-@keyframes bounce {
-
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-
-  40% {
-    transform: translateY(-15px);
-  }
-
-  60% {
-    transform: translateY(-7px);
-  }
-}
 
 /* Common Page Layouts */
 .flex-column {
   flex-direction: column;
 }
 
-/* --- INVENTORY INTRO PAGE --- */
-.inventory-intro-bg {
-  background: radial-gradient(circle at center, #111111 0%, #000000 100%);
-}
+
 
 .flowing-header {
   font-family: var(--font-header);
@@ -641,14 +292,7 @@ h4,
   background: none !important;
 }
 
-#inventory-intro .flowing-header {
-  color: var(--accent-gold);
-  opacity: 0.8;
-  font-size: 3rem;
-  letter-spacing: 10px;
-  -webkit-text-stroke: 0;
-  background: none;
-}
+
 
 .inventory-subtitle {
   font-family: var(--font-mono);
@@ -677,100 +321,7 @@ h4,
   }
 }
 
-.inventory-skills-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 80px;
-  width: 100%;
-  max-width: 1000px;
-  margin-top: 60px;
-  padding: 0 40px;
-}
 
-.skills-column {
-  flex: 1;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(202, 164, 103, 0.2);
-  border-radius: 12px;
-  padding: 30px 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.skills-column:hover {
-  transform: translateY(-5px);
-  border-color: rgba(202, 164, 103, 0.5);
-}
-
-.skills-bg-video,
-.skills-bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  opacity: 0.3;
-  /* Make video/image more transparent */
-}
-
-.skills-bg-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  /* Lighter black mask to compensate */
-  z-index: 1;
-}
-
-.skills-content {
-  position: relative;
-  z-index: 2;
-}
-
-.skills-heading {
-  font-family: var(--font-header);
-  font-size: 2rem;
-  color: var(--accent-gold);
-  margin-bottom: 20px;
-  text-align: center;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(202, 164, 103, 0.3);
-  padding-bottom: 15px;
-}
-
-.skills-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skills-list li {
-  position: relative;
-  padding: 8px 0 8px 25px;
-  color: rgba(255, 255, 255, 0.85);
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
-}
-
-.skills-list li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: var(--accent-gold);
-  font-size: 0.8rem;
-  opacity: 0.7;
-}
 
 .split-layout {
   display: flex;
@@ -786,9 +337,93 @@ h4,
   flex: 1;
 }
 
+/* --- PIXEL ART THREE-COLUMN GALLERY SECTION --- */
+.gifs-three-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 40px;
+  justify-items: center;
+}
+
+.gif-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.pixel-gif {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.pixel-gif:hover {
+  transform: scale(1.15) rotate(2deg);
+}
+
+.gifs-modal-content {
+  max-width: 900px !important;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* --- PIXEL CREATIONS TWO COLUMN SELECTION --- */
+.pixel-creations-two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 0 auto;
+}
+
+.gif-source-card {
+  aspect-ratio: 1.5;
+  height: auto;
+}
+
+.maya-gif-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.maya-preview-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.maya-preview-gif:nth-child(5) {
+  grid-column: 2;
+}
+
 @media (max-width: 768px) {
   .split-layout {
     flex-direction: column;
+  }
+  .gifs-three-columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .pixel-creations-two-columns {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 400px;
   }
 }
 
@@ -2002,15 +1637,7 @@ h4,
     border-bottom: 1px dashed rgba(10, 17, 40, 0.2);
   }
 
-  .inventory-skills-container {
-    flex-direction: column !important;
-    gap: 30px !important;
-    padding: 0 20px !important;
-  }
 
-  .skills-column {
-    width: 100% !important;
-  }
 
   .chapter-title,
   .section-title {
@@ -2444,11 +2071,7 @@ video {
     letter-spacing: 6px !important;
   }
 
-  /* --- Inventory --- */
-  .inventory-skills-container {
-    gap: 40px;
-    padding: 0 20px;
-  }
+
 
   /* --- About / Meeting --- */
   .about-split-container {
@@ -2673,26 +2296,7 @@ video {
     width: 100%;
   }
 
-  /* --- Inventory Skills --- */
-  .inventory-skills-container {
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 10px;
-  }
 
-  .skills-column {
-    width: 100%;
-    padding: 25px 20px;
-  }
-
-  .skills-heading {
-    font-size: 1.5rem;
-  }
-
-  .skills-list li {
-    font-size: 0.95rem;
-    padding: 6px 0 6px 20px;
-  }
 
   /* --- Inventory Subtitle --- */
   .inventory-subtitle {
@@ -2700,10 +2304,7 @@ video {
     letter-spacing: 1px;
   }
 
-  /* --- Adventures Section --- */
-  #adventures-section {
-    padding: 40px 10px;
-  }
+
 
   .adventure-content {
     padding: 30px 15px;
@@ -2943,35 +2544,13 @@ video {
     padding: 6px 12px;
   }
 
-  /* --- Inventory --- */
-  .skills-heading {
-    font-size: 1.3rem;
-  }
 
-  .skills-list li {
-    font-size: 0.85rem;
-    padding: 5px 0 5px 18px;
-  }
 
   .inventory-subtitle {
     font-size: 0.8rem;
   }
 
-  /* --- Adventures --- */
-  .adventure-content {
-    padding: 20px 10px;
-  }
 
-  .achievements-list li {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-
-  .achievements-list li span {
-    font-size: 1rem !important;
-    margin-right: 8px !important;
-  }
 
   /* --- Shrine --- */
   #transition-half {
